@@ -1,0 +1,23 @@
+# Ignore virtual environment
+venv/
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+
+# Ignore compiled Python files
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore database files (assuming SQLite)
+IDE/db.sqlite3
+
+# Ignore static files (if applicable)
+IDE/static/
+
+# Ignore log files
+IDE/logs/
+
+# Ignore temporary files or directories
+IDE/tmp/
