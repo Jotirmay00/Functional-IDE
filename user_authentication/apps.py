@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CodeEvaluationConfig(AppConfig):
+class UserAuthenticationConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'code-evaluation'
+    name = 'user_authentication'
