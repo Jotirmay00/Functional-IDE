@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'code_execution',
     'submission_handling',
     'user_authentication',
+    'code_evaluation',
 ]
 
 MIDDLEWARE = [
