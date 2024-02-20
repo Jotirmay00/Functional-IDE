@@ -1,8 +1,8 @@
-# submissions/urls.py
+
 from django.urls import path
-from . import views
+from .views import submit_code, view_submissions
 
 urlpatterns = [
-    path('submit/', views.submit_code, name='submit_code'),
-    path('view/', views.view_submissions, name='view_submissions'),
+    path('submit/', submit_code, name='submit_code'),
+    path('view/<int:submission_id>/', view_submissions, name='view_submission'),
 ]
