@@ -81,7 +81,7 @@ STATICFILES_DIRS = [
     os.path.join(DIST_DIR, 'assets'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 WSGI_APPLICATION = 'IDE.wsgi.application'
