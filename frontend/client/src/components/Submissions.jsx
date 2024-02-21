@@ -6,7 +6,7 @@ const Submissions = () => {
   const [codes, setCodes] = useState([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/submission/view/')
+    axios.get('/api/submission/view/')
       .then(response => {
         // Sorting the codes according to their submission time
         const sortedCodes = response.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));

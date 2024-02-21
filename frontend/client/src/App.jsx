@@ -21,7 +21,7 @@ function App() {
     try {
         const requestData = { code: code };
         // Make a POST request using Axios
-        const response = await axios.post('http://127.0.0.1:8000/api/evaluate/', requestData, {
+        const response = await axios.post('/api/evaluate/', requestData, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -56,7 +56,7 @@ const handleSubmit = async (e) => {
 
   const requestData = { code: code };
   try {
-      const response = await axios.post('http://127.0.0.1:8000/api/evaluate/', requestData, {
+      const response = await axios.post('/api/evaluate/', requestData, {
           headers: {
               'Content-Type': 'application/json'
           }
@@ -71,7 +71,7 @@ const handleSubmit = async (e) => {
           requestData.verdict = verdict;
 
           // Make a POST request to submit the code along with the verdict
-          const submissionResponse = await axios.post('http://127.0.0.1:8000/api/submission/submit/', requestData, {
+          const submissionResponse = await axios.post('/api/submission/submit/', requestData, {
               headers: {
                   'Content-Type': 'application/json'
               }
