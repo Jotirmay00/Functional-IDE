@@ -8,10 +8,12 @@ from django.http import HttpRequest
 @api_view(['POST'])
 def submit_code(request):
     if request.method == 'POST':
-        serializer = SubmissionSerializer(data=request.data)
+        request_data = request.data.copy()
+        verdict = request_data.pop('verdict', None)
+        serializer = SubmissionSerializer(data=request_data)
         if serializer.is_valid():
             # Save the code submission
-            submission = serializer.save()
+            submission = serializer.save(verdict = verdict)
             return Response({
                 'message': 'Code submitted successfully!',
                 'submission_id': submission.id,
@@ -20,6 +22,7 @@ def submit_code(request):
             return Response(serializer.errors, status=400)
     else:
         return Response({'error': 'Only POST requests are allowed.'}, status=405)
+    
 @api_view(['GET'])
 def view_submissions(request):
     try:

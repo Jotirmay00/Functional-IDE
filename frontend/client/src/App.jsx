@@ -17,65 +17,87 @@ function App() {
   const [output, setOutput] = useState('');
   const [showSubmittedCodes, setShowSubmittedCodes] = useState(false);
 
-  const handleRun = () => {
-    const requestData = { code: code };
-
-    // Make a POST request using Axios
-    axios.post('http://127.0.0.1:8000/api/evaluate/', requestData, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
+  const handleRun = async () => {
+    try {
+        const requestData = { code: code };
+        // Make a POST request using Axios
+        const response = await axios.post('http://127.0.0.1:8000/api/evaluate/', requestData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
         // Check if response is OK
         if (response.status === 200) {
+            const data = response.data;
+            // Extract the verdict from the data
+            const verdict = data.verdict;
+            // Check if there's any error message
+            const errorMessage = data.error ? `Error: ${data.error}` : '';
+            // Set the output to display the verdict
+            const color = verdict === 'Passed' ? 'green' : 'red';
+            setOutput(<span style={{ color }}>TestCases: {verdict}<br />{errorMessage}</span>);
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        setOutput(`Error: ${error.message}`);
+    }
+};
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!code.trim()) {
+    alert('Please enter some code before submitting.');
+    return;
+  }
+  
+  const requestData = { code: code };
+  try {
+      const response = await axios.post('http://127.0.0.1:8000/api/evaluate/', requestData, {
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      });
+
+      // Check if response is OK
+      if (response.status === 200) {
           const data = response.data;
           // Extract the verdict from the data
           const verdict = data.verdict;
-          // Set the output to display the verdict
-          setOutput(`Verdict: ${verdict}`);
-        } else {
+          // Include the verdict in the requestData for submission
+          requestData.verdict = verdict;
+
+          // Make a POST request to submit the code along with the verdict
+          const submissionResponse = await axios.post('http://127.0.0.1:8000/api/submission/submit/', requestData, {
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          });
+
+          // Check if submission response is OK
+          if (submissionResponse.status === 200) {
+              // Display a text message indicating successful submission
+              alert('Submission successful!');
+          } else {
+              throw new Error('Network response was not ok');
+          }
+      } else {
           throw new Error('Network response was not ok');
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-
-      });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const requestData = { code: code };
-
-    // Make a POST request using Axios
-    axios.post('http://127.0.0.1:8000/api/submission/submit/', requestData, {
-      headers: {
-        'Content-Type': 'application/json'
       }
-    })
-      .then(response => {
-        // Check if response is OK
-        if (response.status === 200) {
-          // Display a text message indicating successful submission
-          alert('Submission successful!');
-        } else {
-          throw new Error('Network response was not ok');
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        // Handle errors
-      });
-  };
+  } catch (error) {
+      console.error('Error submitting data:', error);
+      // Handle submission errors
+  }
+};
 
-  const isSubmitDisabled = output !== 'Verdict: Passed';
-
-  const handleBackToDescription = () => {
+  const BackToDescription = () => {
     setShowSubmittedCodes(false);
   };
 
-  const handleShowSubmittedCodes = () => {
+  const ShowSubmittedCodes = () => {
     setShowSubmittedCodes(true);
   };
 
@@ -84,9 +106,9 @@ function App() {
       <header className="bg-gray-900 text-white p-2 flex justify-between items-center">
         <h1 className="text-3xl font-bold text-center flex-grow">CODE IDE</h1>
         {!showSubmittedCodes ? (
-          <button className="bg-gray-600 text-white px-4 py-2 rounded" onClick={handleShowSubmittedCodes}>Submissions</button>
+          <button className="bg-gray-600 text-white px-4 py-2 rounded" onClick={ShowSubmittedCodes}>Submissions</button>
         ) : (
-          <button className="bg-gray-600 text-white px-4 py-2 rounded" onClick={handleBackToDescription}>Description</button>
+          <button className="bg-gray-600 text-white px-4 py-2 rounded" onClick={BackToDescription}>Description</button>
         )}
       </header>
       <div className="flex flex-grow">
@@ -101,10 +123,10 @@ function App() {
           <form onSubmit={handleSubmit} className="mb-2">
             <div className="flex justify-end mb-2">
               <button className="bg-gray-900 text-white px-4 py-2 rounded mr-2" type="button" onClick={handleRun}>Run</button>
-              <button className="bg-gray-900 text-white px-4 py-2 rounded" type="submit" disabled={isSubmitDisabled}>Submit</button>
+              <button className="bg-gray-900 text-white px-4 py-2 rounded" type="submit">Submit</button>
 
             </div>
-            <textarea className="w-full h-32 bg-gray-900 text-gray-300 p-2" name="output_area" value={output} placeholder='Output' disabled></textarea>
+            <div style={{ whiteSpace: 'pre-wrap' }} className="w-full h-32 bg-gray-900 text-gray-300 p-2" name="output_area">{output}</div>
           </form>
         </div>
         <div className="w-1/2 bg-gray-400 p-2">
