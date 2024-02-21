@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 DIST_DIR = os.path.join(BASE_DIR, 'dist')
 
