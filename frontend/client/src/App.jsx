@@ -12,7 +12,7 @@ import axios from 'axios';
 
 function App() {
 
-  const defaultCode = `def find_two_sum(nums, target):\n `;
+  const defaultCode = `def find_two_sum(nums, target): `;
   const [code, setCode] = useState(defaultCode);
   const [output, setOutput] = useState('');
   const [showSubmittedCodes, setShowSubmittedCodes] = useState(false);
@@ -53,7 +53,7 @@ const handleSubmit = async (e) => {
     alert('Please enter some code before submitting.');
     return;
   }
-  
+
   const requestData = { code: code };
   try {
       const response = await axios.post('http://127.0.0.1:8000/api/evaluate/', requestData, {
