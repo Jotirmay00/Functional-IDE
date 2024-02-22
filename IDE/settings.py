@@ -75,13 +75,11 @@ TEMPLATES = [
 
 ALLOWED_HOSTS = ["*"]
 
-DIST_DIR = os.path.join(BASE_DIR, 'dist')
-
 STATICFILES_DIRS = [
-    os.path.join(DIST_DIR, 'assets'),
+    os.path.join(BASE_DIR,'dist' ,'assets/'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 WSGI_APPLICATION = 'IDE.wsgi.application'
@@ -132,7 +130,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/assets/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

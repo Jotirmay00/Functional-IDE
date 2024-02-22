@@ -14,7 +14,6 @@ venv/
 IDE/db.sqlite3
 
 # Ignore static files (if applicable)
-IDE/static/
 
 # Ignore log files
 IDE/logs/
