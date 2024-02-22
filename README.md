@@ -62,28 +62,6 @@ The frontend is developed using React.js with Vite and is located in the `fronte
 
 6. Access the backend in your web browser at `http://localhost:8000`.
 
-### Frontend
-
-1. Navigate to the frontend directory:
-
-    ```bash
-    cd frontend/client
-    ```
-
-2. Install frontend dependencies:
-
-    ```bash
-    npm install
-    ```
-
-3. Start the development server:
-
-    ```bash
-    npm run dev
-    ```
-
-4. Access the frontend in your web browser at `http://localhost:3000`.
-
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
