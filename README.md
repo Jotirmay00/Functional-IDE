@@ -2,6 +2,10 @@
 
 This project is a web-based Integrated Development Environment (IDE) developed using Django and React.js. It provides features for code execution, code evaluation, submission handling, and more.
 
+# Supported Languages
+
+- Python
+
 ## Features
 
 - **Code Evaluation**: Provides a platform for evaluating code with predefined test cases.
