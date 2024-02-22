@@ -62,6 +62,8 @@ The frontend is developed using React.js with Vite and is located in the `fronte
 
 6. Access the backend in your web browser at `http://localhost:8000`.
 
+7. For example   ![Example Image](IDE.png)
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
