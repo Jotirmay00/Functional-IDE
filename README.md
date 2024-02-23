@@ -2,6 +2,10 @@
 
 This project is a web-based Integrated Development Environment (IDE) developed using Django and React.js. It provides features for code execution, code evaluation, submission handling, and more.
 
+# Supported Languages
+
+- Python
+
 ## Features
 
 - **Code Evaluation**: Provides a platform for evaluating code with predefined test cases.
@@ -58,27 +62,7 @@ The frontend is developed using React.js with Vite and is located in the `fronte
 
 6. Access the backend in your web browser at `http://localhost:8000`.
 
-### Frontend
-
-1. Navigate to the frontend directory:
-
-    ```bash
-    cd frontend/client
-    ```
-
-2. Install frontend dependencies:
-
-    ```bash
-    npm install
-    ```
-
-3. Start the development server:
-
-    ```bash
-    npm run dev
-    ```
-
-4. Access the frontend in your web browser at `http://localhost:3000`.
+7. For example   ![Example Image](IDE.png)
 
 ## Contributing
 
