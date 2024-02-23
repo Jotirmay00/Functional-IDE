@@ -32,7 +32,7 @@ function App() {
             // Extract the verdict from the data
             const verdict = data.verdict;
             // Check if there's any error message
-            const errorMessage = data.error ? `Error: ${data.error}` : '';
+            const errorMessage = data.error ? `Error: Please try again ${data.error}` : '';
             // Set the output to display the verdict
             const color = verdict === 'Passed' ? 'green' : 'red';
             setOutput(<span style={{ color }}>TestCases: {verdict}<br />{errorMessage}</span>);
