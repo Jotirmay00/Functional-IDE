@@ -60,7 +60,7 @@ ROOT_URLCONF = 'IDE.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'dist')],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,10 +76,10 @@ TEMPLATES = [
 ALLOWED_HOSTS = ["*"]
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'dist' ,'assets/'),
+    os.path.join(BASE_DIR,'build' ,'static'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 WSGI_APPLICATION = 'IDE.wsgi.application'
